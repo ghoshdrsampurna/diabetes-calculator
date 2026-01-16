@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডায়াবেটিস ভাইটালিটি চেক | ডঃ সম্পূর্ণা ঘোষ</title>
+    <style>
+        /* CSS স্টাইল */
+        :root {
+            --bg-color: #0f172a; /* গাঢ় নেভি ব্লু */
+            --card-bg: #1e293b; /* হালকা নেভি */
+            --text-color: #f1f5f9;
+            --accent-red: #ef4444; /* উচ্চ তীব্রতা (নিয়ন লাল) */
+            --accent-orange: #f97316; /* মাঝারি তীব্রতা */
+            --accent-green: #10b981; /* কম/নিরাপদ */
+            --primary-btn: #3b82f6;
+            --btn-hover: #2563eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Noto Sans Bengali', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main Card */
+        .quiz-container {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 650px; /* একটু চওড়া করা হলো গ্রিডের জন্য */
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #334155;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-header {
+            margin-bottom: 30px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background-color: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-btn);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        /* Question Section */
+        .question-section {
+            animation: fadeIn 0.5s ease;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        /* Options */
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background-color: transparent;
+            border: 2px solid #334155;
+            color: var(--text-color);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1rem;
+            transition: all 0.2s;
+            line-height: 1.4;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary-btn);
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Result Section */
+        .result-section {
+            text-align: center;
+            display: none; /* Hidden by default */
+            animation: slideUp 0.6s ease;
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* --- VISUAL CONTAINERS (Updated) --- */
+        /* Single Image Container (For Low/Mod risk) */
+        .single-image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .single-image-img {
+            max-width: 70%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 2px solid #334155;
+        }
+
+        /* NEW: High Risk Grid Layout */
+        .high-risk-grid {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        .medium-risk-grid {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        .risk-item {
+            flex: 1;
+            text-align: center;
+            background: rgba(239, 68, 68, 0.1); /* Slight red tint bg */
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .risk-item img {
+            width: 100%;
+            max-width: 140px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+        .risk-caption {
+            font-size: 0.85rem;
+            color: #f1f5f9;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* Responsive Grid for Mobile */
+        @media (max-width: 550px) {
+            .high-risk-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .risk-item {
+                width: 80%;
+            }
+        }
+        /* ---------------------------------- */
+
+        #resultDesc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Severity Graph */
+        .graph-container {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .graph-label {
+            margin-bottom: 5px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .graph-track {
+            height: 25px;
+            background: #334155;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .graph-bar {
+            height: 100%;
+            width: 0%; /* Animate via JS */
+            transition: width 1s ease-out;
+            border-radius: 5px;
+        }
+
+        .graph-markers {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        .cta-btn {
+            background-color: var(--primary-btn);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            animation: pulse 2s infinite; /* Added pulse animation for urgency */
+        }
+
+        .cta-btn:hover {
+            background-color: var(--btn-hover);
+        }
+        
+        .bg-red .cta-btn {
+             background-color: var(--accent-red);
+        }
+        .bg-red .cta-btn:hover {
+             background-color: #dc2626;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        .bg-red .cta-btn {
+             animation: pulseRed 2s infinite;
+        }
+        @keyframes pulseRed {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        /* Utility Classes for Colors */
+        .bg-red { background-color: var(--accent-red); box-shadow: 0 0 20px rgba(239, 68, 68, 0.6); border-color: var(--accent-red);}
+        .bg-orange { background-color: var(--accent-orange); box-shadow: 0 0 15px rgba(249, 115, 22, 0.4); }
+        .bg-green { background-color: var(--accent-green); box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+        
+        .text-red { color: var(--accent-red); }
+        .text-orange { color: var(--accent-orange); }
+        .text-green { color: var(--accent-green); }
+        .text-primary { color: var(--primary-btn); }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container" id="mainContainer">
+        <div class="progress-header" id="progressHeader">
+            <div class="progress-label">
+                <span id="questionCount">প্রশ্ন ১ / ৮</span>
+                <span id="progressPercent">০%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div id="quizContent" class="question-section">
+            <h3 style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 10px;">ডায়াবেটিস ভাইটালিটি চেক:</h3>
+            <h2 id="questionText">লোড হচ্ছে...</h2>
+            <div class="options-grid" id="optionsContainer">
+                </div>
+        </div>
+
+        <div id="resultContent" class="result-section">
+            <div id="severityBadge" class="severity-badge">গণনা করা হচ্ছে...</div>
+            
+            <h2 id="resultTitle">মূল্যায়ন সম্পূর্ণ</h2>
+            <p id="resultDesc" style="color: #cbd5e1; margin-bottom: 10px;"></p>
+
+
+            <div id="highRiskGrid" class="high-risk-grid" style="display: none;">
+                <div class="risk-item">
+                    <img src="assets/high_risk/Nervous_problem.png" alt="Nervous Problem">
+                    <p class="risk-caption">স্নায়ুর সমস্যা ও দুশ্চিন্তা<br>(Nerve Issues)</p>
+                </div>
+                <div class="risk-item">
+                    <img src="assets/high_risk/High_Pressure.png" alt="High Pressure">
+                    <p class="risk-caption">উচ্চ রক্তচাপ ও হৃদরোগের ঝুঁকি<br>(Heart Strain)</p>
+                </div>
+                <div class="risk-item">
+                    <img src="assets/high_risk/Loss_Of_Sleep.png" alt="Loss of Sleep">
+                    <p class="risk-caption">দীর্ঘস্থায়ী অনিদ্রা ও ক্লান্তি<br>(Chronic Insomnia)</p>
+                </div>
+            </div>
+            <div id="mediumRiskGrid" class="medium-risk-grid" style="display: none;">
+                <div class="risk-item">
+                    <img src="assets/medium_risk/cake_craving.png" alt="Nervous Problem">
+                    <p class="risk-caption">তীব্র মিষ্টি খাওয়ার প্রবণতা<br>(Uncontrollable Cravings)</p>                </div>
+                <div class="risk-item">
+                    <img src="assets/medium_risk/heavy_weight.png" alt="Loss of Sleep">
+                    <p class="risk-caption">জেদি মেদ ও ওজন বৃদ্ধি<br>(Stubborn Weight Gain)</p>                </div>
+            </div>
+            <div class="graph-container">
+                <div class="graph-label">ঝুঁকির তীব্রতার মাত্রা (Risk Severity Level)</div>
+                <div class="graph-track">
+                    <div id="severityBar" class="graph-bar"></div>
+                </div>
+                <div class="graph-markers">
+                    <span>কম ঝুঁকি</span>
+                    <span>মাঝারি</span>
+                    <span>গুরুতর ঝুঁকি</span>
+                </div>
+            </div>
+
+            <button id="ctaBtn" class="cta-btn" onclick="window.open('[Link to Booking Page]', '_blank')">বুক কনসালটেশন (₹২৯৯)</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Data: Bengali Questions and Scores
+        const questions = [
+            {
+                question: "আপনার বর্তমান HbA1c মাত্রা কত (৩ মাসের গড়)?",
+                options: [
+                    { text: "৫.৭% এর নিচে (ডায়াবেটিস নেই)", score: 0 },
+                    { text: "৫.৭% - ৬.৪% (প্রি-ডায়াবেটিক)", score: 5 },
+                    { text: "৬.৫% - ৮.০% (নিয়ন্ত্রিত ডায়াবেটিস)", score: 10 },
+                    { text: "৮.০% এর উপরে বা জানি না (অনিয়ন্ত্রিত/উচ্চ ঝুঁকি)", score: 20 }
+                ]
+            },
+            {
+                question: "গত ১ বছরে আপনার ওষুধের মাত্রা বা ডোজ কীভাবে পরিবর্তিত হয়েছে?",
+                options: [
+                    { text: "ওষুধের প্রয়োজন নেই / ডোজ প্রাকৃতিকভাবে কমেছে।", score: 0 },
+                    { text: "ডোজ স্থিতিশীল আছে (গত বছরের মতোই)।", score: 5 },
+                    { text: "ডোজ বেড়েছে বা ডাক্তার নতুন ওষুধ যোগ করেছেন।", score: 15 },
+                    { text: "আমি এখন ইনসুলিন ইঞ্জেকশন নিচ্ছি।", score: 20 }
+                ]
+            },
+            {
+                question: "ভারী দুপুরের খাবার বা রাতের খাবারের ১-২ ঘন্টা পরে আপনি কেমন অনুভব করেন?",
+                options: [
+                    { text: "উদ্যমী এবং হালকা।", score: 0 },
+                    { text: "সামান্য ভারী কিন্তু সহনীয়।", score: 5 },
+                    { text: "খুব ঘুম পায়/অলস লাগে (কাজ করার জন্য ঘুম বা কফি দরকার হয়)।", score: 10 },
+                    { text: "পেট ফাঁপা, চরম ক্লান্ত এবং মাথায় কুয়াশাচ্ছন্ন ভাব।", score: 15 }
+                ]
+            },
+            {
+                question: "আপনি কি আপনার হাত বা পায়ে ঝিনঝিন ধরা, অসাড়তা বা জ্বালাপোড়া অনুভব করেন?",
+                options: [
+                    { text: "কখনোই না।", score: 0 },
+                    { text: "খুব কমই (মাসে একবার হয়তো)।", score: 5 },
+                    { text: "মাঝে মাঝে (বিশেষ করে রাতে)।", score: 15 },
+                    { text: "প্রায়ই/প্রতিদিন (এটি আমার ঘুমে ব্যাঘাত ঘটায়)।", score: 20 }
+                ]
+            },
+            {
+                question: "রাতে প্রস্রাব করার জন্য আপনাকে কতবার ঘুম থেকে উঠতে হয়?",
+                options: [
+                    { text: "কখনোই না (আমি সারা রাত ঘুমাই)।", score: 0 },
+                    { text: "মাঝে মাঝে একবার।", score: 5 },
+                    { text: "প্রতি রাতে ১-২ বার।", score: 10 },
+                    { text: "৩ বারের বেশি (আমার ঘুম ভেঙে যায়)।", score: 15 }
+                ]
+            },
+            {
+                question: "আপনার কি পেটে এমন জেদি চর্বি আছে যা চেষ্টা করেও কমানো যাচ্ছে না?",
+                options: [
+                    { text: "না, আমার ওজন ঠিক আছে।", score: 0 },
+                    { text: "সামান্য ওজন আছে, কিন্তু তা নিয়ন্ত্রণযোগ্য।", score: 5 },
+                    { text: "হ্যাঁ, আমার বেশিরভাগ ওজন পেটের চারপাশে।", score: 10 },
+                    { text: "হ্যাঁ, এবং ডায়েট কন্ট্রোল করা সত্ত্বেও আমার ওজন বেড়েই চলেছে।", score: 15 }
+                ]
+            },
+            {
+                question: "খাওয়ার কিছুক্ষণ পরেই কি আপনার হঠাৎ মিষ্টি বা শর্করা জাতীয় খাবার (ভাত/রুটি) খাওয়ার তীব্র ইচ্ছা হয়?",
+                options: [
+                    { text: "না, আমার পেট ভরা এবং তৃপ্ত মনে হয়।", score: 0 },
+                    { text: "মাঝে মাঝে, যদি আমি মানসিক চাপে থাকি।", score: 5 },
+                    { text: "হ্যাঁ, খাবারের পরে আমার প্রায়ই \"মিষ্টি কিছু\" প্রয়োজন হয়।", score: 10 },
+                    { text: "হ্যাঁ, এই তীব্র আকাঙ্ক্ষা নিয়ন্ত্রণহীন।", score: 15 }
+                ]
+            },
+            {
+                question: "আপনার বর্তমান অবস্থা কি আপনাকে ভবিষ্যতের জটিলতা (চোখ, কিডনি, হার্ট) নিয়ে উদ্বিগ্ন করে তোলে?",
+                options: [
+                    { text: "না, আমি আমার স্বাস্থ্যের ব্যাপারে আত্মবিশ্বাসী।", score: 0 },
+                    { text: "সামান্য, কিন্তু আমি এটি নিয়ে না ভাবার চেষ্টা করি।", score: 5 },
+                    { text: "হ্যাঁ, আমি পরিবারের বোঝা হয়ে যাওয়ার চিন্তা করি।", score: 10 },
+                    { text: "হ্যাঁ, এই ভয় ধ্রুবক এবং অত্যধিক।", score: 15 }
+                ]
+            }
+        ];
+
+        // 2. State Variables
+        let currentQuestionIndex = 0;
+        let totalScore = 0;
+        const maxPossibleScore = 135; 
+
+        // 3. DOM Elements
+        const mainContainer = document.getElementById('mainContainer');
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const progressBar = document.getElementById('progressBar');
+        const progressPercent = document.getElementById('progressPercent');
+        const questionCount = document.getElementById('questionCount');
+        const quizContent = document.getElementById('quizContent');
+        const resultContent = document.getElementById('resultContent');
+        const progressHeader = document.getElementById('progressHeader');
+        const ctaBtn = document.getElementById('ctaBtn');
+        // NEW: Image containers
+        const highRiskGrid = document.getElementById('highRiskGrid');
+        const mediumRiskGrid = document.getElementById('mediumRiskGrid');
+
+
+        // Helper to convert numbers to Bengali digits
+        function toBengaliDigit(number) {
+            const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+            return number.toString().split('').map(digit => bengaliDigits[digit] || digit).join('');
+        }
+
+        // 4. Function to Render Question
+        function loadQuestion() {
+            const currentData = questions[currentQuestionIndex];
+            
+            quizContent.style.animation = 'none';
+            quizContent.offsetHeight; 
+            quizContent.style.animation = 'fadeIn 0.5s ease';
+
+            questionText.innerText = currentData.question;
+            questionCount.innerText = `প্রশ্ন ${toBengaliDigit(currentQuestionIndex + 1)} / ${toBengaliDigit(questions.length)}`;
+            
+            const progress = (currentQuestionIndex / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressPercent.innerText = `${toBengaliDigit(Math.round(progress))}%`;
+
+            optionsContainer.innerHTML = '';
+            currentData.options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.classList.add('option-btn');
+                btn.innerText = option.text;
+                btn.onclick = () => handleAnswer(option.score);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        // 5. Handle Answer Click
+        function handleAnswer(score) {
+            totalScore += score;
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // 6. Show Results Logic (Updated for Visual Grid)
+        function showResults() {
+            quizContent.style.display = 'none';
+            progressHeader.style.display = 'none';
+            resultContent.style.display = 'block';
+
+            const severityPercentage = Math.min((totalScore / maxPossibleScore) * 100, 100);
+            
+            const severityBar = document.getElementById('severityBar');
+            const severityBadge = document.getElementById('severityBadge');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultDesc = document.getElementById('resultDesc');
+
+            let colorClass = '';
+            let statusText = '';
+            let headlineText = '';
+            let description = '';
+            let ctaText = '';
+            let ctaLink = '[Link to Booking Page]';
+
+            // Reset image containers
+            highRiskGrid.style.display = 'none';
+            mediumRiskGrid.style.display = 'none';
+            mainContainer.className = 'quiz-container'; // Reset main container border
+
+            // Logic based on totalScore ranges
+            if (totalScore <= 25) {
+                // Outcome 1: Low Risk
+                colorClass = 'bg-green';
+                statusText = 'স্থিতিশীল নিয়ন্ত্রণ (Stable Control)';
+                headlineText = `আপনার স্কোর: <span class="text-green">${toBengaliDigit(totalScore)}</span> (নিয়ন্ত্রিত)`;
+                description = "আপনি আপনার স্বাস্থ্য পরিচালনায় দুর্দান্ত কাজ করছেন। এই স্থিতিশীলতা বজায় রাখতে প্রতি ৩ মাসে আপনার প্যারামিটারগুলি পরীক্ষা করতে থাকুন।";
+                ctaText = "আমাদের ফ্রি কমিউনিটিতে যোগ দিন";
+                ctaLink = '[Link to Free Community]';
+                
+                // Show Single Image (Positive/Neutral)
+                // Note: Using Nervous_problem as placeholder, ideally use a happy/healthy image here.
+
+            } else if (totalScore <= 65) {
+                // Outcome 2: Moderate Risk
+                colorClass = 'bg-orange';
+                statusText = 'সতর্কতা: নীরব অগ্রগতি সনাক্ত হয়েছে';
+                headlineText = `আপনার স্কোর: <span class="text-orange">${toBengaliDigit(totalScore)}</span> (বিপজ্জনক অঞ্চল)`;
+                description = "<strong>রিপোর্ট 'নরমাল' থাকলেও আপনার শরীর যুদ্ধ করছে।</strong><br>নিচের লক্ষণগুলো প্রমাণ করে যে আপনার মেটাবলিজম কাজ করছে না এবং ওষুধ সত্ত্বেও রোগ বাড়ছে। এখনই ব্যবস্থা না নিলে এটি গুরুতর পর্যায়ে যাবে।";                ctaText = "ক্র্যাশ করার জন্য অপেক্ষা করবেন না। রোডম্যাপ বুক করুন (₹২৯৯)";
+                ctaLink = '[Link to Booking Page]';
+                
+                // Show Single Image (Warning)
+                mediumRiskGrid.style.display = 'flex';
+
+
+            } else {
+                // Outcome 3: Critical Risk (THE VISUAL GRID)
+                colorClass = 'bg-red';
+                // mainContainer.classList.add('bg-red'); // Add red glow to container
+                statusText = 'গুরুতর: অবিলম্বে হস্তক্ষেপ প্রয়োজন';
+                headlineText = `আপনার স্কোর: <span class="text-red">${toBengaliDigit(totalScore)}</span> (গুরুতর ঝুঁকি)`;
+                // Shortened description, letting images do the talking
+                description = "<strong>আপনার শরীর আপনাকে SOS (জরুরী সংকেত) পাঠাচ্ছে।</strong><br>আপনার বর্তমান লক্ষণগুলি নির্দেশ করে যে আপনি নিচের দীর্ঘমেয়াদী জটিলতাগুলোর উচ্চ ঝুঁকিতে আছেন:";
+                ctaText = "⚠️ এটি উপেক্ষা করা বন্ধ করুন। ইমার্জেন্সি সেশন বুক করুন";
+                ctaLink = '[Link to Emergency Booking Page]';
+                
+                // SHOW THE 3-IMAGE GRID
+                highRiskGrid.style.display = 'flex';
+            }
+
+            // Apply Styles, Text
+            severityBadge.innerText = statusText;
+            severityBadge.className = `severity-badge ${colorClass}`;
+            resultTitle.innerHTML = headlineText;
+            resultDesc.innerHTML = description;
+            ctaBtn.innerText = ctaText;
+            ctaBtn.setAttribute('onclick', `window.open('${ctaLink}', '_blank')`);
+
+            // Animate Graph Bar
+            severityBar.className = `graph-bar ${colorClass}`;
+            setTimeout(() => {
+                severityBar.style.width = `${severityPercentage}%`;
+            }, 100);
+        }
+
+        // Initial Load
+        loadQuestion();
+
+    </script>
+</body>
+</html>
