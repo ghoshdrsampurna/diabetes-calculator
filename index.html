@@ -54,10 +54,37 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            gap: 16px;
+        }
+
+        /* Highlighted Diagnose Header */
+        .diagnose-header {
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            text-align: center;
+        }
+
+        .diagnose-header h1 {
+            font-size: 2rem;
+            font-weight: 650;
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 550px) {
+            .diagnose-header {
+                padding-inline: 14px;
+            }
+
+            .diagnose-header h1 {
+                font-size: 0.95rem;
+            }
         }
 
         /* Main Card */
@@ -321,8 +348,11 @@
     </style>
 </head>
 <body>
-
+    <div class="diagnose-header">
+        <h1>A small exercise before we diagnose your Diabetes risk</h1>
+    </div>
     <div class="quiz-container" id="mainContainer">
+
         <div class="progress-header" id="progressHeader">
             <div class="progress-label">
                 <span id="questionCount">প্রশ্ন ১ / ৮</span>
