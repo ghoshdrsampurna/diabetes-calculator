@@ -48,6 +48,13 @@
             font-family: 'Segoe UI', 'Noto Sans Bengali', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* Hide Sub Header */
+        @media (max-width:720px) {
+            
+            .sub-header{
+                display: none;
+            }
+        }
 
 
         body {
@@ -345,12 +352,28 @@
         .text-orange { color: var(--accent-orange); }
         .text-green { color: var(--accent-green); }
         .text-primary { color: var(--primary-btn); }
+
+
     </style>
 </head>
 <body>
-    <div class="diagnose-header">
-        <h1>A small exercise before we diagnose your Diabetes risk</h1>
-    </div>
+    <header style=" color: #FFFFFF; padding: 30px 20px; text-align: center;  font-family: 'Noto Sans Bengali', sans-serif;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            
+            <p style="margin: 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #3CC7A4;">
+                Dr. Sampurna Ghosh | Diabetes Wellness Expert
+            </p>
+            
+            <h1 style="margin: 10px 0 10px 0; font-size: 28px; font-weight: bold; line-height: 1.4;">
+                আপনার পার্সোনালাইজড ডায়াবেটিস রিস্ক অ্যানালিসিস রিপোর্ট
+            </h1>
+            
+            <p style="margin: 0; font-size: 16px; color: #F4EDE2; line-height: 1.5;" class="sub-header">
+                আপনার দেওয়া তথ্যের ভিত্তিতে আপনার বর্তমান শারীরিক অবস্থার একটি সম্পূর্ণ বিশ্লেষণ এবং ন্যাচারাল রিভার্সালের সঠিক দিকনির্দেশনা।
+            </p>
+    
+        </div>
+    </header>
     <div class="quiz-container" id="mainContainer">
 
         <div class="progress-header" id="progressHeader">
@@ -589,7 +612,7 @@
                 headlineText = `আপনার স্কোর: <span class="text-green">${toBengaliDigit(totalScore)}</span> (নিয়ন্ত্রিত)`;
                 description = "আপনি আপনার স্বাস্থ্য পরিচালনায় দুর্দান্ত কাজ করছেন। এই স্থিতিশীলতা বজায় রাখতে প্রতি ৩ মাসে আপনার প্যারামিটারগুলি পরীক্ষা করতে থাকুন।";
                 ctaText = "সেশন বুক করুন";
-                ctaLink = 'https://chat.whatsapp.com/DRo19jdcFQv7a2aTE9SqN5';
+                ctaLink = 'https://rzp.io/rzp/rhyrkPE4';
                 
                 // Show Single Image (Positive/Neutral)
                 // Note: Using Nervous_problem as placeholder, ideally use a happy/healthy image here.
