@@ -3,665 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ডায়াবেটিস ভাইটালিটি চেক | ডঃ সম্পূর্ণা ঘোষ</title>
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vcn39lh96g");
-    </script>
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '2104563526667735');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2104563526667735&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->    
+    <title>Dr. Sampurna Ghosh | Natural Diabetes Reversal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS স্টাইল */
+        /* Base Styles & Brand Colors */
         :root {
-            --bg-color: #0f172a; /* গাঢ় নেভি ব্লু */
-            --card-bg: #1e293b; /* হালকা নেভি */
-            --text-color: #f1f5f9;
-            --accent-red: #ef4444; /* উচ্চ তীব্রতা (নিয়ন লাল) */
-            --accent-orange: #f97316; /* মাঝারি তীব্রতা */
-            --accent-green: #10b981; /* কম/নিরাপদ */
-            --primary-btn: #3b82f6;
-            --btn-hover: #2563eb;
+            --primary-dark: #0D6B6A; /* Deep Teal */
+            --primary-light: #3CC7A4; /* Mint Green */
+            --accent-coral: #E56B63; /* Coral Rose */
+            --bg-neutral: #F4EDE2; /* Sand Beige */
+            --text-dark: #1B1D1F; /* Charcoal */
+            --bg-darker: #0D3434; /* Very Dark Teal */
+            --white: #FFFFFF;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', 'Noto Sans Bengali', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Hide Sub Header */
-        @media (max-width:720px) {
-            
-            .sub-header{
-                display: none;
-            }
-        }
-
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            gap: 16px;
-        }
-
-        /* Highlighted Diagnose Header */
-        .diagnose-header {
-            width: 100%;
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 12px 20px;
-            text-align: center;
-        }
-
-        .diagnose-header h1 {
-            font-size: 2rem;
-            font-weight: 650;
-            letter-spacing: 0.02em;
-        }
-
-        @media (max-width: 550px) {
-            .diagnose-header {
-                padding-inline: 14px;
-            }
-
-            .diagnose-header h1 {
-                font-size: 0.95rem;
-            }
-        }
-
-        /* Main Card */
-        .quiz-container {
-            background-color: var(--card-bg);
-            width: 100%;
-            max-width: 650px; /* একটু চওড়া করা হলো গ্রিডের জন্য */
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid #334155;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Progress Bar */
-        .progress-header {
-            margin-bottom: 30px;
-        }
-        
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: #94a3b8;
-        }
-
-        .progress-track {
-            width: 100%;
-            height: 8px;
-            background-color: #334155;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background-color: var(--primary-btn);
-            width: 0%;
-            transition: width 0.4s ease;
-        }
-
-        /* Question Section */
-        .question-section {
-            animation: fadeIn 0.5s ease;
-        }
-
-        h2 {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-            font-weight: 600;
-        }
-
-        /* Options */
-        .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .option-btn {
-            background-color: transparent;
-            border: 2px solid #334155;
-            color: var(--text-color);
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: left;
-            font-size: 1rem;
-            transition: all 0.2s;
-            line-height: 1.4;
-        }
-
-        .option-btn:hover {
-            border-color: var(--primary-btn);
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-
-        /* Result Section */
-        .result-section {
-            text-align: center;
-            display: none; /* Hidden by default */
-            animation: slideUp 0.6s ease;
-        }
-
-        .severity-badge {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        /* --- VISUAL CONTAINERS (Updated) --- */
-        /* Single Image Container (For Low/Mod risk) */
-        .single-image-container {
-            margin: 20px 0;
-            text-align: center;
-        }
-        .single-image-img {
-            max-width: 70%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 2px solid #334155;
-        }
-
-        /* NEW: High Risk Grid Layout */
-        .high-risk-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 25px 0;
-        }
-        .medium-risk-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 25px 0;
-        }
-        .risk-item {
-            flex: 1;
-            text-align: center;
-            background: rgba(239, 68, 68, 0.1); /* Slight red tint bg */
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-        .risk-item img {
-            width: 100%;
-            max-width: 140px;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-        }
-        .risk-caption {
-            font-size: 0.85rem;
-            color: #f1f5f9;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        /* Responsive Grid for Mobile */
-        @media (max-width: 550px) {
-            .high-risk-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-            .risk-item {
-                width: 80%;
-            }
-        }
-        /* ---------------------------------- */
-
-        #resultDesc {
-            font-size: 1.1rem;
+            font-family: 'Noto Sans Bengali', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: var(--white);
             line-height: 1.6;
         }
 
-        /* Severity Graph */
-        .graph-container {
-            margin: 30px 0;
-            text-align: left;
+        h1, h2, h3 { margin-top: 0; }
+        
+        a { text-decoration: none; }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .graph-label {
-            margin-bottom: 5px;
-            color: #94a3b8;
-            font-size: 0.9rem;
+        /* CTA Button Style */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--bg-darker);
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(60, 199, 164, 0.4);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .cta-button:hover {
+            background-color: #32B091;
+            transform: translateY(-2px);
         }
 
-        .graph-track {
-            height: 25px;
-            background: #334155;
-            border-radius: 5px;
-            position: relative;
-            overflow: hidden;
+        /* Header / Navbar */
+        header {
+            background-color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
-        .graph-bar {
-            height: 100%;
-            width: 0%; /* Animate via JS */
-            transition: width 1s ease-out;
-            border-radius: 5px;
-        }
-
-        .graph-markers {
+        .nav-content {
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
-            color: #64748b;
-            margin-top: 5px;
+            align-items: center;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-dark);
         }
 
-        .cta-btn {
-            background-color: var(--primary-btn);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
+        /* Hero Section */
+        .hero {
+            background-color: var(--bg-darker);
+            color: var(--white);
+            padding: 80px 0;
+        }
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .hero-text { flex: 1; }
+        .hero-text h1 {
+            font-size: 40px;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+        .hero-text h1 span { color: var(--primary-light); }
+        .hero-text p {
+            font-size: 18px;
+            color: var(--bg-neutral);
+            margin-bottom: 30px;
+        }
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+        .hero-image img {
+            max-width: 70%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid var(--primary-dark);
+        }
+
+        /* Transparency / Objective Section */
+        .objective-section {
+            background-color: var(--bg-neutral);
+            padding: 60px 0;
+            text-align: center;
+        }
+        .objective-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--accent-coral);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .objective-box h2 { color: var(--primary-dark); font-size: 28px; }
+        .objective-box p { font-size: 16px; color: #555; }
+
+        /* VSL Video Section */
+        .vsl-section {
+            padding: 80px 0;
+            background-color: var(--white);
+            text-align: center;
+        }
+        .vsl-section h2 { color: var(--primary-dark); font-size: 32px; margin-bottom: 20px; }
+        .video-placeholder {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            background-color: #ddd;
+            aspect-ratio: 16/9;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-darker);
+            font-size: 30px;
             cursor: pointer;
-            margin-top: 20px;
-            width: 100%;
-            transition: background-color 0.3s ease;
-            animation: pulse 2s infinite; /* Added pulse animation for urgency */
         }
 
-        .cta-btn:hover {
-            background-color: var(--btn-hover);
+        /* The Promise Section */
+        .promise-section {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
         }
+        .promise-section h2 { color: var(--primary-light); font-size: 32px; margin-bottom: 40px; }
+        .cards-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+        .promise-card {
+            background-color: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            flex: 1;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .promise-card h3 { color: var(--primary-light); font-size: 22px; }
+        .promise-card p { color: var(--bg-neutral); font-size: 15px; }
+
+        /* Testimonials Section */
+        .testimonial-section {
+            padding: 80px 0;
+            background-color: var(--bg-neutral);
+            text-align: center;
+        }
+        .testimonial-section h2 { color: var(--primary-dark); font-size: 32px; margin-bottom: 40px; }
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            flex: 1;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-light);
+        }
+        .client-name { font-weight: 700; color: var(--primary-dark); margin-top: 15px; }
+
+        /* Footer CTA */
+        .final-cta {
+            padding: 80px 0;
+            background-color: var(--bg-darker);
+            color: var(--white);
+            text-align: center;
+        }
+        .final-cta h2 { font-size: 36px; margin-bottom: 20px; }
         
-        .bg-red .cta-btn {
-             background-color: var(--accent-red);
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content, .cards-grid { flex-direction: column; }
+            .hero-text h1 { font-size: 32px; }
+            .hero-text { text-align: center; }
+            .hero-image { text-align: center; margin-top: 30px; }
         }
-        .bg-red .cta-btn:hover {
-             background-color: #dc2626;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-        }
-        .bg-red .cta-btn {
-             animation: pulseRed 2s infinite;
-        }
-        @keyframes pulseRed {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-
-        /* Utility Classes for Colors */
-        .bg-red { background-color: var(--accent-red); box-shadow: 0 0 20px rgba(239, 68, 68, 0.6); border-color: var(--accent-red);}
-        .bg-orange { background-color: var(--accent-orange); box-shadow: 0 0 15px rgba(249, 115, 22, 0.4); }
-        .bg-green { background-color: var(--accent-green); box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
-        
-        .text-red { color: var(--accent-red); }
-        .text-orange { color: var(--accent-orange); }
-        .text-green { color: var(--accent-green); }
-        .text-primary { color: var(--primary-btn); }
-
-
     </style>
 </head>
 <body>
-    <header style=" color: #FFFFFF; padding: 30px 20px; text-align: center;  font-family: 'Noto Sans Bengali', sans-serif;">
-        <div style="max-width: 800px; margin: 0 auto;">
-            
-            <p style="margin: 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #3CC7A4;">
-                Dr. Sampurna Ghosh | Diabetes Wellness Expert
-            </p>
-            
-            <h1 style="margin: 10px 0 10px 0; font-size: 28px; font-weight: bold; line-height: 1.4;">
-                আপনার পার্সোনালাইজড ডায়াবেটিস রিস্ক অ্যানালিসিস রিপোর্ট
-            </h1>
-            
-            <p style="margin: 0; font-size: 16px; color: #F4EDE2; line-height: 1.5;" class="sub-header">
-                আপনার দেওয়া তথ্যের ভিত্তিতে আপনার বর্তমান শারীরিক অবস্থার একটি সম্পূর্ণ বিশ্লেষণ এবং ন্যাচারাল রিভার্সালের সঠিক দিকনির্দেশনা।
-            </p>
-    
+
+    <header>
+        <div class="container nav-content">
+            <div class="logo">Dr. Sampurna Ghosh</div>
+            <a href="diagnose.html" class="cta-button" style="padding: 10px 25px; font-size: 15px;">অ্যাসেসমেন্ট শুরু করুন</a>
         </div>
     </header>
-    <div class="quiz-container" id="mainContainer">
 
-        <div class="progress-header" id="progressHeader">
-            <div class="progress-label">
-                <span id="questionCount">প্রশ্ন ১ / ৮</span>
-                <span id="progressPercent">০%</span>
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>কড়া ডায়েট বা জিম ছাড়াই <span>ন্যাচারাল ডায়াবেটিস রিভার্সাল!</span></h1>
+                <p>বাঙালি কর্মজীবী মহিলাদের জন্য বিশেষভাবে তৈরি 'DNA Formula'। আপনার বর্তমান লাইফস্টাইল কি আপনার ডায়াবেটিসের ঝুঁকি বাড়াচ্ছে? আজই চেক করুন এবং ওষুধহীন জীবনের পথে প্রথম পা বাড়ান।</p>
+                <a href="diagnose.html" class="cta-button">ডায়াবেটিস রিস্ক অ্যাসেসমেন্ট দিন ➔</a>
             </div>
-            <div class="progress-track">
-                <div class="progress-fill" id="progressBar"></div>
+            <div class="hero-image">
+                <img src="assets/app/drghosh.png" alt="Dr Sampurna Ghosh">
             </div>
         </div>
+    </section>
 
-        <div id="quizContent" class="question-section">
-            <h3 style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 10px;">ডায়াবেটিস ভাইটালিটি চেক:</h3>
-            <h2 id="questionText">লোড হচ্ছে...</h2>
-            <div class="options-grid" id="optionsContainer">
-                </div>
+    <section class="objective-section">
+        <div class="container">
+            <div class="objective-box">
+                <h2>আমাদের উদ্দেশ্য অত্যন্ত স্বচ্ছ</h2>
+                <p>আমরা চাই আপনি আপনার স্বাস্থ্যের সঠিক অবস্থা সম্পর্কে জানুন। এই ২-মিনিটের অ্যাসেসমেন্টটি ডিজাইন করা হয়েছে আপনার বর্তমান ডায়াবেটিস ঝুঁকি (Diabetes Risk) এবং মেটাবলিক অবস্থা নিখুঁতভাবে চিহ্নিত করার জন্য।</p>
+                <p style="font-weight: 600; color: var(--accent-coral); margin-top: 20px;">
+                    যদি আপনার রিপোর্টে দেখা যায় যে আপনার ঝুঁকি 'High' বা 'Medium', তবে প্যানিক করার কিছু নেই। আপনি ডঃ সম্পূর্ণা ঘোষের সাথে সরাসরি একটি পার্সোনালাইজড কনসাল্টেশন বুক করার সুযোগ পাবেন, যেখানে আমরা ন্যাচারাল উপায়ে আপনার সুগার নিয়ন্ত্রণের রোডম্যাপ তৈরি করব।
+                </p>
+            </div>
         </div>
+    </section>
 
-        <div id="resultContent" class="result-section">
-            <div id="severityBadge" class="severity-badge">গণনা করা হচ্ছে...</div>
+    <section class="vsl-section">
+        <div class="container">
+            <h2>ন্যাচারালি কীভাবে ডায়াবেটিস রিভার্স করবেন?</h2>
+            <p style="margin-bottom: 40px; color: #666;">ওষুধ ছাড়া সুস্থ থাকার বিজ্ঞান বুঝতে এই ৫-মিনিটের ভিডিওটি দেখুন।</p>
             
-            <h2 id="resultTitle">মূল্যায়ন সম্পূর্ণ</h2>
-            <p id="resultDesc" style="color: #cbd5e1; margin-bottom: 10px;"></p>
-
-
-            <div id="highRiskGrid" class="high-risk-grid" style="display: none;">
-                <div class="risk-item">
-                    <img src="assets/high_risk/Nervous_problem.png" alt="Nervous Problem">
-                    <p class="risk-caption">স্নায়ুর সমস্যা ও দুশ্চিন্তা<br>(Nerve Issues)</p>
-                </div>
-                <div class="risk-item">
-                    <img src="assets/high_risk/High_Pressure.png" alt="High Pressure">
-                    <p class="risk-caption">উচ্চ রক্তচাপ ও হৃদরোগের ঝুঁকি<br>(Heart Strain)</p>
-                </div>
-                <div class="risk-item">
-                    <img src="assets/high_risk/Loss_Of_Sleep.png" alt="Loss of Sleep">
-                    <p class="risk-caption">দীর্ঘস্থায়ী অনিদ্রা ও ক্লান্তি<br>(Chronic Insomnia)</p>
-                </div>
+            <div class="video-container" style="max-width: 800px; margin: 0 auto 30px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); background-color: #000;">
+                <iframe 
+                    src="https://my-url.in/welcome" 
+                    width="100%" 
+                    height="450" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture" 
+                    allowfullscreen
+                    style="display: block; border: none;">
+                </iframe>
             </div>
-            <div id="mediumRiskGrid" class="medium-risk-grid" style="display: none;">
-                <div class="risk-item">
-                    <img src="assets/medium_risk/cake_craving.png" alt="Nervous Problem">
-                    <p class="risk-caption">তীব্র মিষ্টি খাওয়ার প্রবণতা<br>(Uncontrollable Cravings)</p>                </div>
-                <div class="risk-item">
-                    <img src="assets/medium_risk/heavy_weight.png" alt="Loss of Sleep">
-                    <p class="risk-caption">জেদি মেদ ও ওজন বৃদ্ধি<br>(Stubborn Weight Gain)</p>                </div>
-            </div>
-            <div class="graph-container">
-                <div class="graph-label">ঝুঁকির তীব্রতার মাত্রা (Risk Severity Level)</div>
-                <div class="graph-track">
-                    <div id="severityBar" class="graph-bar"></div>
-                </div>
-                <div class="graph-markers">
-                    <span>কম ঝুঁকি</span>
-                    <span>মাঝারি</span>
-                    <span>গুরুতর ঝুঁকি</span>
-                </div>
-            </div>
-
-            <button id="ctaBtn" class="cta-btn" onclick="window.open(`https://rzp.io/rzp/rhyrkPE4`, '_blank')">বুক কনসালটেশন (₹২৯৯)</button>
+            
+            <a href="diagnose.html" class="cta-button">ভিডিওটি দেখেছি, অ্যাসেসমেন্ট শুরু করতে চাই</a>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // 1. Data: Bengali Questions and Scores
-        const questions = [
-            {
-                question: "আপনার বর্তমান HbA1c মাত্রা কত (৩ মাসের গড়)?",
-                options: [
-                    { text: "৫.৭% এর নিচে (ডায়াবেটিস নেই)", score: 0 },
-                    { text: "৫.৭% - ৬.৪% (প্রি-ডায়াবেটিক)", score: 5 },
-                    { text: "৬.৫% - ৮.০% (নিয়ন্ত্রিত ডায়াবেটিস)", score: 10 },
-                    { text: "৮.০% এর উপরে বা জানি না (অনিয়ন্ত্রিত/উচ্চ ঝুঁকি)", score: 20 }
-                ]
-            },
-            {
-                question: "গত ১ বছরে আপনার ওষুধের মাত্রা বা ডোজ কীভাবে পরিবর্তিত হয়েছে?",
-                options: [
-                    { text: "ওষুধের প্রয়োজন নেই / ডোজ প্রাকৃতিকভাবে কমেছে।", score: 0 },
-                    { text: "ডোজ স্থিতিশীল আছে (গত বছরের মতোই)।", score: 5 },
-                    { text: "ডোজ বেড়েছে বা ডাক্তার নতুন ওষুধ যোগ করেছেন।", score: 15 },
-                    { text: "আমি এখন ইনসুলিন ইঞ্জেকশন নিচ্ছি।", score: 20 }
-                ]
-            },
-            {
-                question: "ভারী দুপুরের খাবার বা রাতের খাবারের ১-২ ঘন্টা পরে আপনি কেমন অনুভব করেন?",
-                options: [
-                    { text: "উদ্যমী এবং হালকা।", score: 0 },
-                    { text: "সামান্য ভারী কিন্তু সহনীয়।", score: 5 },
-                    { text: "খুব ঘুম পায়/অলস লাগে (কাজ করার জন্য ঘুম বা কফি দরকার হয়)।", score: 10 },
-                    { text: "পেট ফাঁপা, চরম ক্লান্ত এবং মাথায় কুয়াশাচ্ছন্ন ভাব।", score: 15 }
-                ]
-            },
-            {
-                question: "আপনি কি আপনার হাত বা পায়ে ঝিনঝিন ধরা, অসাড়তা বা জ্বালাপোড়া অনুভব করেন?",
-                options: [
-                    { text: "কখনোই না।", score: 0 },
-                    { text: "খুব কমই (মাসে একবার হয়তো)।", score: 5 },
-                    { text: "মাঝে মাঝে (বিশেষ করে রাতে)।", score: 15 },
-                    { text: "প্রায়ই/প্রতিদিন (এটি আমার ঘুমে ব্যাঘাত ঘটায়)।", score: 20 }
-                ]
-            },
-            {
-                question: "রাতে প্রস্রাব করার জন্য আপনাকে কতবার ঘুম থেকে উঠতে হয়?",
-                options: [
-                    { text: "কখনোই না (আমি সারা রাত ঘুমাই)।", score: 0 },
-                    { text: "মাঝে মাঝে একবার।", score: 5 },
-                    { text: "প্রতি রাতে ১-২ বার।", score: 10 },
-                    { text: "৩ বারের বেশি (আমার ঘুম ভেঙে যায়)।", score: 15 }
-                ]
-            },
-            {
-                question: "আপনার কি পেটে এমন জেদি চর্বি আছে যা চেষ্টা করেও কমানো যাচ্ছে না?",
-                options: [
-                    { text: "না, আমার ওজন ঠিক আছে।", score: 0 },
-                    { text: "সামান্য ওজন আছে, কিন্তু তা নিয়ন্ত্রণযোগ্য।", score: 5 },
-                    { text: "হ্যাঁ, আমার বেশিরভাগ ওজন পেটের চারপাশে।", score: 10 },
-                    { text: "হ্যাঁ, এবং ডায়েট কন্ট্রোল করা সত্ত্বেও আমার ওজন বেড়েই চলেছে।", score: 15 }
-                ]
-            },
-            {
-                question: "খাওয়ার কিছুক্ষণ পরেই কি আপনার হঠাৎ মিষ্টি বা শর্করা জাতীয় খাবার (ভাত/রুটি) খাওয়ার তীব্র ইচ্ছা হয়?",
-                options: [
-                    { text: "না, আমার পেট ভরা এবং তৃপ্ত মনে হয়।", score: 0 },
-                    { text: "মাঝে মাঝে, যদি আমি মানসিক চাপে থাকি।", score: 5 },
-                    { text: "হ্যাঁ, খাবারের পরে আমার প্রায়ই \"মিষ্টি কিছু\" প্রয়োজন হয়।", score: 10 },
-                    { text: "হ্যাঁ, এই তীব্র আকাঙ্ক্ষা নিয়ন্ত্রণহীন।", score: 15 }
-                ]
-            },
-            {
-                question: "আপনার বর্তমান অবস্থা কি আপনাকে ভবিষ্যতের জটিলতা (চোখ, কিডনি, হার্ট) নিয়ে উদ্বিগ্ন করে তোলে?",
-                options: [
-                    { text: "না, আমি আমার স্বাস্থ্যের ব্যাপারে আত্মবিশ্বাসী।", score: 0 },
-                    { text: "সামান্য, কিন্তু আমি এটি নিয়ে না ভাবার চেষ্টা করি।", score: 5 },
-                    { text: "হ্যাঁ, আমি পরিবারের বোঝা হয়ে যাওয়ার চিন্তা করি।", score: 10 },
-                    { text: "হ্যাঁ, এই ভয় ধ্রুবক এবং অত্যধিক।", score: 15 }
-                ]
-            }
-        ];
+    <section class="promise-section">
+        <div class="container">
+            <h2>আমাদের প্রতিশ্রুতি: The 3-Step DNA Formula</h2>
+            <div class="cards-grid">
+                <div class="promise-card">
+                    <h3>Diet (ডায়েট)</h3>
+                    <p>আপনার প্রিয় বাঙালি খাবার মেনু থেকে বাদ না দিয়েই সঠিক সময়ে সঠিক খাবার খাওয়ার বিজ্ঞান। কোনো উপবাস বা স্টারভেশন নয়।</p>
+                </div>
+                <div class="promise-card">
+                    <h3>Nurture (নার্চার)</h3>
+                    <p>দীর্ঘক্ষণ বসে কাজের ফাঁকেই সহজ রুটিন। জিম ছাড়াই আপনার ঘুম, মানসিক চাপ এবং হরমোন ব্যালেন্স করার পদ্ধতি।</p>
+                </div>
+                <div class="promise-card">
+                    <h3>Action (অ্যাকশন)</h3>
+                    <p>প্রতিদিনের সঠিক অভ্যাস এবং অ্যাকাউন্টেবিলিটি। আমরা আপনাকে ধাপে ধাপে গাইড করব যাতে আপনি কখনোই পথ না হারান।</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // 2. State Variables
-        let currentQuestionIndex = 0;
-        let totalScore = 0;
-        const maxPossibleScore = 135; 
+    <section class="testimonial-section">
+        <div class="container">
+            <h2>রিয়েল পেশেন্ট, রিয়েল রেজাল্টস</h2>
+            <div class="cards-grid">
+                <div class="testimonial-card">
+                    <p>"আমি ভেবেছিলাম চিরতরে ভাত খাওয়া ছেড়ে দিতে হবে। ডঃ সম্পূর্ণা আমাকে সময় পরিচালনা করতে শিখিয়েছেন। এখন আমার সুগার স্থিতিশীল।"</p>
+                    <div class="client-name">- রিতা এস., আইটি ম্যানেজার</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"ক্লাস আর সংসারের চাপে নিজের জন্য সময় ছিল না। এই সিস্টেমটি আমার রুটিনের সাথে মিলে গেছে। আমি এখন ওষুধমুক্ত।"</p>
+                    <div class="client-name">- অনিতা ডি., শিক্ষিকা</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"কঠিন ওয়ার্কআউট বা ওষুধ নেই—শুধু শৃঙ্খলা। আমি ১০ বছর আগের মতো এনার্জি ফিরে পেয়েছি।"</p>
+                    <div class="client-name">- মধুমিতা পি., এইচআর প্রফেশনাল</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // 3. DOM Elements
-        const mainContainer = document.getElementById('mainContainer');
-        const questionText = document.getElementById('questionText');
-        const optionsContainer = document.getElementById('optionsContainer');
-        const progressBar = document.getElementById('progressBar');
-        const progressPercent = document.getElementById('progressPercent');
-        const questionCount = document.getElementById('questionCount');
-        const quizContent = document.getElementById('quizContent');
-        const resultContent = document.getElementById('resultContent');
-        const progressHeader = document.getElementById('progressHeader');
-        const ctaBtn = document.getElementById('ctaBtn');
-        // NEW: Image containers
-        const highRiskGrid = document.getElementById('highRiskGrid');
-        const mediumRiskGrid = document.getElementById('mediumRiskGrid');
+    <section class="final-cta">
+        <div class="container">
+            <h2>আপনার ক্যারিয়ার সুসংগঠিত, আপনার স্বাস্থ্যও তাই হওয়া উচিত।</h2>
+            <p style="color: var(--bg-neutral); margin-bottom: 40px; font-size: 18px;">আপনার শরীর আপনাকে কী সিগন্যাল দিচ্ছে তা আজই জানুন।</p>
+            <a href="diagnose.html" class="cta-button" style="padding: 20px 50px; font-size: 20px;">আপনার ডায়াবেটিস রিস্ক চেক করুন ➔</a>
+        </div>
+    </section>
 
+    <footer style="background-color: #111; color: #888; text-align: center; padding: 20px 0; font-size: 14px;">
+        <div class="container">
+            &copy; 2026 Dr. Sampurna Ghosh Health Programs | Privacy Policy | Terms & Conditions<br>
+            Disclaimer: Results vary depending on commitment and consistency.
+        </div>
+    </footer>
 
-        // Helper to convert numbers to Bengali digits
-        function toBengaliDigit(number) {
-            const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-            return number.toString().split('').map(digit => bengaliDigits[digit] || digit).join('');
-        }
-
-        // 4. Function to Render Question
-        function loadQuestion() {
-            const currentData = questions[currentQuestionIndex];
-            
-            quizContent.style.animation = 'none';
-            quizContent.offsetHeight; 
-            quizContent.style.animation = 'fadeIn 0.5s ease';
-
-            questionText.innerText = currentData.question;
-            questionCount.innerText = `প্রশ্ন ${toBengaliDigit(currentQuestionIndex + 1)} / ${toBengaliDigit(questions.length)}`;
-            
-            const progress = (currentQuestionIndex / questions.length) * 100;
-            progressBar.style.width = `${progress}%`;
-            progressPercent.innerText = `${toBengaliDigit(Math.round(progress))}%`;
-
-            optionsContainer.innerHTML = '';
-            currentData.options.forEach(option => {
-                const btn = document.createElement('button');
-                btn.classList.add('option-btn');
-                btn.innerText = option.text;
-                btn.onclick = () => handleAnswer(option.score);
-                optionsContainer.appendChild(btn);
-            });
-        }
-
-        // 5. Handle Answer Click
-        function handleAnswer(score) {
-            totalScore += score;
-            currentQuestionIndex++;
-
-            if (currentQuestionIndex < questions.length) {
-                loadQuestion();
-            } else {
-                showResults();
-            }
-        }
-
-        // 6. Show Results Logic (Updated for Visual Grid)
-        function showResults() {
-            quizContent.style.display = 'none';
-            progressHeader.style.display = 'none';
-            resultContent.style.display = 'block';
-
-            const severityPercentage = Math.min((totalScore / maxPossibleScore) * 100, 100);
-            
-            const severityBar = document.getElementById('severityBar');
-            const severityBadge = document.getElementById('severityBadge');
-            const resultTitle = document.getElementById('resultTitle');
-            const resultDesc = document.getElementById('resultDesc');
-
-            let colorClass = '';
-            let statusText = '';
-            let headlineText = '';
-            let description = '';
-            let ctaText = '';
-            let ctaLink = 'https://rzp.io/rzp/rhyrkPE4';
-
-            // Reset image containers
-            highRiskGrid.style.display = 'none';
-            mediumRiskGrid.style.display = 'none';
-            mainContainer.className = 'quiz-container'; // Reset main container border
-
-            // Logic based on totalScore ranges
-            if (totalScore <= 25) {
-                // Outcome 1: Low Risk
-                colorClass = 'bg-green';
-                statusText = 'স্থিতিশীল নিয়ন্ত্রণ (Stable Control)';
-                headlineText = `আপনার স্কোর: <span class="text-green">${toBengaliDigit(totalScore)}</span> (নিয়ন্ত্রিত)`;
-                description = "আপনি আপনার স্বাস্থ্য পরিচালনায় দুর্দান্ত কাজ করছেন। এই স্থিতিশীলতা বজায় রাখতে প্রতি ৩ মাসে আপনার প্যারামিটারগুলি পরীক্ষা করতে থাকুন।";
-                ctaText = "সেশন বুক করুন";
-                ctaLink = 'https://rzp.io/rzp/rhyrkPE4';
-                
-                // Show Single Image (Positive/Neutral)
-                // Note: Using Nervous_problem as placeholder, ideally use a happy/healthy image here.
-
-            } else if (totalScore <= 65) {
-                // Outcome 2: Moderate Risk
-                colorClass = 'bg-orange';
-                statusText = 'সতর্কতা: নীরব অগ্রগতি সনাক্ত হয়েছে';
-                headlineText = `আপনার স্কোর: <span class="text-orange">${toBengaliDigit(totalScore)}</span> (বিপজ্জনক অঞ্চল)`;
-                description = "<strong>রিপোর্ট 'নরমাল' থাকলেও আপনার শরীর যুদ্ধ করছে।</strong><br>নিচের লক্ষণগুলো প্রমাণ করে যে আপনার মেটাবলিজম কাজ করছে না এবং ওষুধ সত্ত্বেও রোগ বাড়ছে। এখনই ব্যবস্থা না নিলে এটি গুরুতর পর্যায়ে যাবে।";                ctaText = "ক্র্যাশ করার জন্য অপেক্ষা করবেন না। রোডম্যাপ বুক করুন (₹২৯৯)";
-                ctaLink = 'https://rzp.io/rzp/rhyrkPE4';
-                
-                // Show Single Image (Warning)
-                mediumRiskGrid.style.display = 'flex';
-
-
-            } else {
-                // Outcome 3: Critical Risk (THE VISUAL GRID)
-                colorClass = 'bg-red';
-                // mainContainer.classList.add('bg-red'); // Add red glow to container
-                statusText = 'গুরুতর: অবিলম্বে হস্তক্ষেপ প্রয়োজন';
-                headlineText = `আপনার স্কোর: <span class="text-red">${toBengaliDigit(totalScore)}</span> (গুরুতর ঝুঁকি)`;
-                // Shortened description, letting images do the talking
-                description = "<strong>আপনার শরীর আপনাকে SOS (জরুরী সংকেত) পাঠাচ্ছে।</strong><br>আপনার বর্তমান লক্ষণগুলি নির্দেশ করে যে আপনি নিচের দীর্ঘমেয়াদী জটিলতাগুলোর উচ্চ ঝুঁকিতে আছেন:";
-                ctaText = "⚠️ এটি উপেক্ষা করা বন্ধ করুন। ইমার্জেন্সি সেশন বুক করুন";
-                ctaLink = 'https://rzp.io/rzp/rhyrkPE4';
-                
-                // SHOW THE 3-IMAGE GRID
-                highRiskGrid.style.display = 'flex';
-            }
-
-            // Apply Styles, Text
-            severityBadge.innerText = statusText;
-            severityBadge.className = `severity-badge ${colorClass}`;
-            resultTitle.innerHTML = headlineText;
-            resultDesc.innerHTML = description;
-            ctaBtn.innerText = ctaText;
-            ctaBtn.setAttribute('onclick', `window.open('${ctaLink}', '_blank')`);
-
-            // Animate Graph Bar
-            severityBar.className = `graph-bar ${colorClass}`;
-            setTimeout(() => {
-                severityBar.style.width = `${severityPercentage}%`;
-            }, 100);
-        }
-
-        // Initial Load
-        loadQuestion();
-
-    </script>
 </body>
 </html>
